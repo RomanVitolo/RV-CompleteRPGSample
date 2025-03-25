@@ -1,0 +1,20 @@
+{
+    "name": "RV.RPGProject.Entities.Runtime",
+    "rootNamespace": "",
+    "references": [
+        "GUID:def8e06dd9e64b044806b53decf93bd1",
+        "GUID:bb2c632f796742342824b37c7568aad2",
+        "GUID:4307f53044263cf4b835bd812fc161a4",
+        "GUID:e11e1cfdd643c194baebda680095590b",
+        "GUID:404e010a1b34b284793fc21e177be400"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
