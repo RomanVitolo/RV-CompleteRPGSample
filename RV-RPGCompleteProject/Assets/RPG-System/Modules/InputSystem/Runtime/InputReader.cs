@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 
 namespace RPG_System.Modules.InputSystem.Runtime
 {
-    [CreateAssetMenu(menuName = "RPG System Module/Inputs", fileName = "InputReader")]
+    [CreateAssetMenu(menuName = "RPG System Modules/Inputs", fileName = "InputReader")]
     public class InputReader : ScriptableObject, GlobalInputs.IPlayerActions
     {
         public event Action JumpEvent;
@@ -13,6 +13,7 @@ namespace RPG_System.Modules.InputSystem.Runtime
         public event Action CancelEvent;
         public Vector2 MovementValue {get; private set;}
         public Vector2 LookValue {get; private set;}
+        public bool IsAttacking { get; private set; }
         
         
         private GlobalInputs controls;
@@ -59,6 +60,12 @@ namespace RPG_System.Modules.InputSystem.Runtime
             if(!context.performed) return;
             
             CancelEvent?.Invoke();
+        }
+
+        public void OnAttack(InputAction.CallbackContext context)
+        {
+            if (context.performed) IsAttacking = true;
+            else if(context.canceled) IsAttacking = false;
         }
 
         public void DeInitializeInputs()

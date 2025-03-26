@@ -1,4 +1,5 @@
 using RPG_System.Modules.CoreCombat.Runtime.Targets;
+using RPG_System.Modules.Entities.Runtime.Weapons;
 using RPG_System.Modules.InputSystem.Runtime;
 using RPG_System.Modules.StateMachine;
 using RPG_System.Modules.Utilities;
@@ -13,9 +14,11 @@ namespace RPG_System.Modules.Entities.Runtime.Player
         [field: SerializeField] public Animator PlayerAnimator { get; private set; }
         [field: SerializeField] public Targeter Targeter { get; private set; }
         [field: SerializeField] public ForceReceiver ForceReceiver { get; private set; }
+        [field: SerializeField] public WeaponDamage Weapon { get; private set; }
         [field: SerializeField] public float FreeLookMovementSpeed { get; private set; }
         [field: SerializeField] public float TargetingMovementSpeed { get; private set; }
         [field: SerializeField] public float RotationSmoothValue { get; private set; }
+        [field: SerializeField] public AttackModel[] Attacks { get; private set; }
         
         public Transform MainCameraTransform { get; private set; }
 
@@ -25,6 +28,7 @@ namespace RPG_System.Modules.Entities.Runtime.Player
             Controller ??= GetComponent<CharacterController>();
             PlayerAnimator ??= GetComponentInChildren<Animator>();
             Targeter ??= GetComponentInChildren<Targeter>();
+            Weapon ??= GetComponentInChildren<WeaponDamage>();
             if (Camera.main != null) MainCameraTransform = Camera.main.transform;
         }
 

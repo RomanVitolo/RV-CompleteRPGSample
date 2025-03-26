@@ -5,10 +5,14 @@ namespace RPG_System.Modules.Entities.Runtime.Player
 {
     public abstract class PlayerBaseState : State
     {
-       protected PlayerStateMachine stateMachine;
+       protected readonly PlayerStateMachine stateMachine;
 
        protected PlayerBaseState(PlayerStateMachine stateMachine) => this.stateMachine = stateMachine;
-
+       
+       protected void Move(float deltaTime)
+       {
+           Move(Vector3.zero, deltaTime);
+       }
        protected void Move(Vector3 movement, float deltaTime)
        {
            stateMachine.Controller.Move((movement + stateMachine.ForceReceiver.Movement) * deltaTime);

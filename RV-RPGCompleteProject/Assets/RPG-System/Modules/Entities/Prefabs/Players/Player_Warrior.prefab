@@ -1167,6 +1167,7 @@ Transform:
   - {fileID: 4933896772118286219}
   - {fileID: 7202760053488599301}
   - {fileID: 7287026503967614160}
+  - {fileID: 4079411443032558242}
   m_Father: {fileID: 8441170053569752956}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &4406871408661650914
@@ -2964,6 +2965,75 @@ Transform:
   - {fileID: 5822893485898617489}
   m_Father: {fileID: 5366808238529937087}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6552396819079156965
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4079411443032558242}
+  - component: {fileID: 3354477534930316611}
+  - component: {fileID: 482011587848832720}
+  m_Layer: 0
+  m_Name: WeaponBehaviour
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4079411443032558242
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552396819079156965}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.029060539, y: 0.03152364, z: 0.0009169091, w: 0.99908}
+  m_LocalPosition: {x: 0.123, y: -0.02, z: 0.441}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9038843279851779983}
+  m_LocalEulerAnglesHint: {x: -3.332, y: 3.614, z: 0}
+--- !u!136 &3354477534930316611
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552396819079156965}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 1.25
+  m_Direction: 2
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &482011587848832720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6552396819079156965}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e6f5a22337c4335b962786cafc9ebf6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _collider: {fileID: 17993645725942307}
 --- !u!1 &6669275556184993038
 GameObject:
   m_ObjectHideFlags: 0
@@ -3181,6 +3251,7 @@ GameObject:
   m_Component:
   - component: {fileID: 825935524920385308}
   - component: {fileID: 6843415257978081116}
+  - component: {fileID: 7007503372844765490}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Untagged
@@ -3235,6 +3306,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7007503372844765490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7294485357354944608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b5caa09664f4417a722062a4271bb58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _weaponBehaviour: {fileID: 6552396819079156965}
 --- !u!1 &7483185632304141180
 GameObject:
   m_ObjectHideFlags: 0
@@ -3247,6 +3331,7 @@ GameObject:
   - component: {fileID: 17993645725942307}
   - component: {fileID: 1502857741401536541}
   - component: {fileID: 2632631868866198633}
+  - component: {fileID: 3383052450984281525}
   m_Layer: 0
   m_Name: Player_Warrior
   m_TagString: Player
@@ -3314,9 +3399,14 @@ MonoBehaviour:
   <PlayerAnimator>k__BackingField: {fileID: 6843415257978081116}
   <Targeter>k__BackingField: {fileID: 8326838777966475380}
   <ForceReceiver>k__BackingField: {fileID: 2632631868866198633}
+  <Weapon>k__BackingField: {fileID: 0}
   <FreeLookMovementSpeed>k__BackingField: 4.5
   <TargetingMovementSpeed>k__BackingField: 5
   <RotationSmoothValue>k__BackingField: 10
+  <Attacks>k__BackingField:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &2632631868866198633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3330,6 +3420,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _characterController: {fileID: 17993645725942307}
+  drag: 0
+--- !u!114 &3383052450984281525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7483185632304141180}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7854f9d015b6484aba029dbb4d609071, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 0
+  <CurrentHealth>k__BackingField: 100
 --- !u!1 &7515774370928963248
 GameObject:
   m_ObjectHideFlags: 0

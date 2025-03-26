@@ -14,11 +14,17 @@ namespace RPG_System.Modules.Entities.Runtime.Player
         {
             stateMachine.InputReader.TargetEvent += OnTargetAction;
             
-            stateMachine.PlayerAnimator.Play(FreeLookBlendTree);
+            stateMachine.PlayerAnimator.CrossFadeInFixedTime(FreeLookBlendTree, dampTime);
         }
         
         public override void Execute(float deltaTime)
         {
+            if ((stateMachine.InputReader.IsAttacking))
+            {
+                stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0));
+                return;
+            }
+            
             Vector3 movement = CalculateMovement();
             
             Move(movement * stateMachine.FreeLookMovementSpeed, deltaTime);

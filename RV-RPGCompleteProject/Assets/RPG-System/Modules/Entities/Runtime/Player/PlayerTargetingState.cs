@@ -13,11 +13,16 @@ namespace RPG_System.Modules.Entities.Runtime.Player
         {
             stateMachine.InputReader.CancelEvent += OnCancelAction;
             
-            stateMachine.PlayerAnimator.Play(TargetingBlendTree);
+            stateMachine.PlayerAnimator.CrossFadeInFixedTime(TargetingBlendTree, 0.1f);
         }
 
         public override void Execute(float deltaTime)
         {
+            if ((stateMachine.InputReader.IsAttacking))
+            {
+                stateMachine.SwitchState(new PlayerAttackingState(stateMachine, 0));
+                return;
+            }
             if (stateMachine.Targeter.CurrentTarget == null)
             {
                 stateMachine.SwitchState(new PlayerMovementState(stateMachine));
