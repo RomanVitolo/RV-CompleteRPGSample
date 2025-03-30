@@ -4,19 +4,19 @@ namespace RPG_System.Modules.Entities.Runtime.Player
 {
     public class PlayerAttackingState : PlayerBaseState
     {
-        private readonly AttackModel _attackStats;
+        private readonly AttackModel _attackStat;
         private float previousFrameTime;
         private bool alreadyForceApplied;
         
         public PlayerAttackingState(PlayerStateMachine stateMachine, int attackIndex) : base(stateMachine)
         {
-            _attackStats = stateMachine.Attacks[attackIndex];
+            _attackStat = stateMachine.Attacks[attackIndex];
         }
 
         public override void Enter()
         {
-            stateMachine.Weapon.SetAttack(_attackStats.DamageValue);
-            stateMachine.PlayerAnimator.CrossFadeInFixedTime(_attackStats.AnimationName, _attackStats.TransitionDuration);
+            stateMachine.Weapon.SetAttack(_attackStat.DamageValue);
+            stateMachine.PlayerAnimator.CrossFadeInFixedTime(_attackStat.AnimationName, _attackStat.TransitionDuration);
         }
 
         public override void Execute(float deltaTime)
@@ -27,9 +27,9 @@ namespace RPG_System.Modules.Entities.Runtime.Player
             
             float normalizeTime = GetNormalizedTime();
 
-            if (normalizeTime < 1f)
+            if (normalizeTime >= previousFrameTime && normalizeTime < 1f)
             {
-                if (normalizeTime > previousFrameTime && normalizeTime < 1f)
+                if (normalizeTime >= _attackStat.ForceTime)
                     TryApplyForce();
                 
                 if (stateMachine.InputReader.IsAttacking)
@@ -44,7 +44,7 @@ namespace RPG_System.Modules.Entities.Runtime.Player
                     stateMachine.SwitchState(new PlayerMovementState(stateMachine));
             }
             
-            previousFrameTime = normalizeTime;
+            //previousFrameTime = normalizeTime;
         }
 
         public override void Exit()
@@ -73,13 +73,13 @@ namespace RPG_System.Modules.Entities.Runtime.Player
 
         private void TryCombatAttack(float normalizedTime)
         {
-            if(_attackStats.CombatStateIndex == -1) return;
+            if(_attackStat.CombatStateIndex == -1) return;
             
-            if(normalizedTime < _attackStats.CombatAttackTime) return;
+            if(normalizedTime < _attackStat.CombatAttackTime) return;
             
             stateMachine.SwitchState
             (
-                new PlayerAttackingState(stateMachine, _attackStats.CombatStateIndex)
+                new PlayerAttackingState(stateMachine, _attackStat.CombatStateIndex)
             );
         }
 
@@ -87,7 +87,7 @@ namespace RPG_System.Modules.Entities.Runtime.Player
         {
             if (alreadyForceApplied) return;
             
-            stateMachine.ForceReceiver.AddForce(stateMachine.transform.forward * _attackStats.Force);
+            stateMachine.ForceReceiver.AddForce(stateMachine.transform.forward * _attackStat.Force);
             
             alreadyForceApplied = true;
         }

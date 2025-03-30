@@ -17,5 +17,5 @@ MonoBehaviour:
   <CombatStateIndex>k__BackingField: 1
   <CombatAttackTime>k__BackingField: 0.6
   <ForceTime>k__BackingField: 0.5
-  <Force>k__BackingField: 3
+  <Force>k__BackingField: 1
   <DamageValue>k__BackingField: 10

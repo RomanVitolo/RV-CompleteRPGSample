@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace RPG_System.Modules.Entities.Runtime.Player

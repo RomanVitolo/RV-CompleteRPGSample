@@ -13,7 +13,7 @@ namespace RPG_System.Modules.InputSystem.Runtime
         public event Action CancelEvent;
         public Vector2 MovementValue {get; private set;}
         public Vector2 LookValue {get; private set;}
-        public bool IsAttacking { get; private set; }
+        [field: SerializeField] public bool IsAttacking { get; private set; }
         
         
         private GlobalInputs controls;
