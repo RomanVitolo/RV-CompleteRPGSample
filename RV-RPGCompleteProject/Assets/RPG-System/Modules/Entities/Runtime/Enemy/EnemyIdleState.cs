@@ -21,6 +21,13 @@ namespace RPG_System.Modules.Entities.Runtime.Enemy
 
         public override void Execute(float deltaTime)
         {
+            Move(deltaTime);
+            if (isInChaseRange())
+            {
+                Debug.Log("In Chase Range");
+                stateMachine.SwitchState(new EnemyChasingState(stateMachine));
+                return;
+            }
             stateMachine.EnemyAnimator.SetFloat(Speed, 0, DAMPTIME, deltaTime);
         }
 
